@@ -11,14 +11,16 @@
             active-text-color="#ffd04b"
             :router="true"
             :default-active="$route.path"
+            :default-openeds="['1','2','3','4']"
+          
           >
-            <el-submenu index="article" >
+            <el-submenu index="1" >
               <template slot="title">
                 <i class="iconfont icon-24"></i>
                 <span>文章管理</span>
               </template>
               <el-menu-item index="/articleAdd">发表文章</el-menu-item>
-              <el-menu-item index="/articleManager">管理文章</el-menu-item>
+              <el-menu-item index="/articleManager">删除文章</el-menu-item>
             </el-submenu>
             <el-submenu index="2">
               <template slot="title">
@@ -50,7 +52,12 @@
 
 <script>
 export default {
-  name:'Menu',
+    name:'Menu',
+    data(){
+        return{
+           // isCollaspe:false    
+            }
+    },
  methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);

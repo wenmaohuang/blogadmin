@@ -1,7 +1,7 @@
 <template>
   <el-upload
   class="avatar-uploader"
-  action="https://localhost:3000/upload/article"
+  action="http://localhost:3002/upload/articleSurface"
   :show-file-list="false"
   :on-success="handleAvatarSuccess"
   :before-upload="beforeAvatarUpload"
@@ -13,18 +13,23 @@
 
 <script>
 export default {
-name:"Upload",
-data(){
-    return {
-        imageUrl:""
-    }
-},
-methods:{
-    handleAvatarSuccess(res,file){
-        this.imageUrl = URL.createObjectURL(file.raw)
+    name:"Upload",
+    data(){
+        return {
+            imgUrl:""
+        }
     },
-    beforeAvatarUpload(type){
-        const isType = /^(image\/jpeg|image\/png|image\/gif)$/.test(file.type)
+    methods:{
+        handleAvatarSuccess(res,file){
+            this.$emit('uploadSuccess',res.surface)
+            console.log(res)
+            console.log(file)
+            this.imgUrl = URL.createObjectURL(file.raw)
+        },
+        beforeAvatarUpload(file){
+            
+            const isType = /^(image\/jpeg|image\/png|image\/gif)$/.test(file.type)
+console.log(isType)
         if(!isType){
             this.$message.error('上传图片只能jpeg png gif格式')
         }

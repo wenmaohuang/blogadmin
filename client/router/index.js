@@ -27,7 +27,7 @@ const routes = [
                 path: '/articleAdd',
                 name: 'Add',
                 meta:{cnName:'发表文章'},
-                component: () => import('../views/admin/article/Add')
+                component: () => import('../views/admin/article/articleAdd')
             },
             {
                 path: '/articleManager',
