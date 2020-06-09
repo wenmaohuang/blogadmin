@@ -4,23 +4,23 @@
     <!-- <button type="button" @click="handleClick" class="layui-btn">提交</button> -->
   </div>
 </template>
+<script src="../../public/layui/layui.js"></script>
 
-
-    <script>
+<script>
 export default {
-    name: "RichText",
-    data() {
-        return {
-            layedit: null,
-            index: 0
-        };
-    },
-    methods: {
-        handleClick() {
-            // layedit.getContent(this.index);
-            // console.log("1");
-            // this.$emit("Sub", this.layedit.getContent(this.index));
-            // console.log(this.layedit.getContent(this.index))
+  name: "RichText",
+  data() {
+    return {
+      layedit: null,
+      index: 0
+    };
+  },
+  methods: {
+    handleClick() {
+      // layedit.getContent(this.index);
+      // console.log("1");
+      // this.$emit("Sub", this.layedit.getContent(this.index));
+      // console.log(this.layedit.getContent(this.index))
     }
   },
   mounted() {
