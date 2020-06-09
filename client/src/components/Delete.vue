@@ -16,7 +16,7 @@ import { log } from "util";
 import fyyd from "../../api/fyyd";
 
 
-const getArticleShow = fyyd.getArticleShow;
+const getArticleTitle = fyyd.getArticleTitle;
 
 export default {
   name: "delete",
@@ -31,10 +31,10 @@ export default {
     };
   },
 computed: {
-  msg(){
-    let ccc = this.article.title
-    return ccc
-  }
+  // msg(){
+  //   let ccc = this.article.title
+  //   return ccc
+  // }
 },
   methods: {
     onSubmit(formName) {
@@ -57,11 +57,15 @@ computed: {
     }
   },
   mounted() {
-    getArticleShow().then(res => {
-      this.article = res.data.data;
+    getArticleTitle().then((req,res) => {
+      this.article = req.data.data;
       // this.form = res.data.data
-      console.log(this.article);
-    });
+      console.log(this.article,'rrr');
+      // res.send({code:0})
+    }).catch(err=>{
+      // res.send({code:1})
+    })
+    ;
   }
 };
 </script>
