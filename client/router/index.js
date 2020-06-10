@@ -14,7 +14,7 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-        // name: 'admin',
+        name: 'admin',
         meta:{cnName:'管理'},
         component: () => import('../views/admin'),
         children: [
@@ -43,6 +43,7 @@ const routes = [
     }
 ]
 const router = new VueRouter({
+    mode:"history",
     routes
 })
 export default router

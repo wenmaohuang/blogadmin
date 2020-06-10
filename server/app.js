@@ -29,24 +29,53 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 // app.use(express.static(path.join(__dirname, '../client/public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use((req,res,next)=>{
+app.use((req, res, next) => {
     res.header({
         'Access-Control-Allow-Credentials': true,
         'Access-Control-Allow-Origin': req.headers.origin || '*',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'PUT,POST,GET,DELETE,OPTIONS',
-        'Content-Type': 'application/json; charset=utf-8'
+        // 'Content-Type': 'application/json; charset=utf-8'
     });
-    if (req.method === "OPTIONS"){
+    if (req.method === "OPTIONS") {
         res.sendStatus(200);
-    }else{
+    } else {
         next();
     }
 });
 
 
 app.use(require('./session/index.js'))
-app.use('/',require('./routes/index.js'))
+app.use('/', require('./routes/index.js'))
+
+const routesList = [
+    {
+        path: '/',
+        name: 'admin',
+    },
+    {
+        path: '',
+        name: 'adminIndex',
+    },
+    {
+        path: '/articleAdd',
+                name: 'Add',
+    },
+    {
+        path: '/articleManager',
+                name: 'Manager',
+    },
+    {
+        path: '/login',
+        name: 'login',
+    }
+]
+routesList.forEach(item=>{
+app.get(item.path,(req,res)=>{
+    res.sendFile(require('path').join(__dirname,'../client/dist/index.html'))
+})
+})
+
 
 
 
