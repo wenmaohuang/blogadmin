@@ -31,6 +31,6 @@ export default {
 <style>
 .el-breadcrumb{
   padding: 20px;
-  background-color: #aaa;
+  background-color: #387;
 }
 </style>

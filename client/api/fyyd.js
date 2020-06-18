@@ -11,11 +11,17 @@ export default{
 
 
 getArticleTitle(){
-    return axios.post('/article/getShow')
+    return axios.post('/article/getShowTitle')
 
 },
 postArticleDel({ title }) {
     return axios.post('/article/delete', { title })
+},
+postArticleUpdate({type,title,tag,content}){
+    return axios.post('/article/edit',{type,title,tag,content})
+},
+postArticle({ type, title, content, tag, surface }) {
+    return axios.post('/article/add', { type, title, content, tag, surface })
 }
 
 }

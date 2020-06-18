@@ -1,74 +1,113 @@
 <template>
-  <div class="delete">
-    <el-form ref="form" :model="form">
-      <el-form-item>
-        <el-select v-model="article.title">
-          <el-option :label="i.title" :value="i.title" v-for="(i,index) in article" :key="index"></el-option>
-        </el-select>
-      </el-form-item>
-    </el-form>
-    <el-button @click="onSubmit('form');test()">删除文章</el-button>
-  </div>
-</template> 
+    <el-table :data="tableData" style="width: 100%">
+        <el-table-column label="日期" width="180">
+            <template slot-scope="scope" v-show="ifShow">
+                <i class="el-icon-time"></i>
+                <span style="margin-left: 10px">{{ scope.row.title }}</span>
+            </template>
+        </el-table-column>
+        <el-table-column label="姓名" width="180">
+            <template slot-scope="scope" v-show="ifShow">
+                <el-popover trigger="hover" placement="top">
+                    <p>姓名: {{ scope.row.name }}</p>
+                    <p>住址: {{ scope.row.address }}</p>
+                    <div slot="reference" class="name-wrapper">
+                        <el-tag size="medium">{{ scope.row.name }}</el-tag>
+                    </div>
+                </el-popover>
+            </template>
+        </el-table-column>
+        <el-table-column label="操作">
+            <template slot-scope="scope" v-show="ifShow">
+                <!-- <el-button
+          size="mini"
+                @click="handleEdit(scope.$index, scope.row)">编辑</el-button>-->
+                <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">
+                    <Edit :title="title" :tag="tag" :content="content" :type="type" :tableData="tableData" @handleSubmit="handleSubmit"></Edit>
+                </el-button>
+                <el-button
+                    size="mini"
+                    type="danger"
+                    @click="handleDelete(scope.$index,scope.row)"
+                >删除</el-button>
+            </template>
+        </el-table-column>
+    </el-table>
+</template>
 
 <script>
-import { log } from "util";
 import fyyd from "../../api/fyyd";
+import api from "../../api"
+const getArticle = fyyd.getArticleTitle;
+const postArticleUpdate = fyyd.postArticleUpdate;
 
 
-const getArticleTitle = fyyd.getArticleTitle;
-
+import Edit from "./Edit";
 export default {
-  name: "delete",
-  data() {
-    return {
-      form: {
-        title: ''
-      },
-      article: {
-        title:''
-      }
-    };
-  },
-computed: {
-  // msg(){
-  //   let ccc = this.article.title
-  //   return ccc
-  // }
-},
-  methods: {
-    onSubmit(formName) {
-      console.log(formName, "fff");
-      this.$refs[formName].validate(valid => {
-        // console.log(valid)
-        if (valid) {
-          this.$emit("handleSubmit", {
-            title: this.article.title,
-           
-          });
-        } else {
-          return false;
-        }
-      });
+    data() {
+        return {
+            ifShow: true,
+            tableData: [],
+            index: "",
+            title: "",
+            tag: "",
+            type:"",
+            content: ""
+        };
     },
-    test(){
-      console.log(this.form,'ppp');
-      
+    components: { Edit },
+    watch: {
+        tableData() {}
+    },
+
+    methods: {
+        handleEdit(index, row) {
+            this.index = index;
+            this.title = row.title;
+            this.tag = row.tag;
+            this.type = row.type
+            this.content = row.content;
+        },
+        handleDelete(index, row) {
+            this.ifShow = false;
+            this.$emit("handleSubmit", {
+                title: row.title
+            });
+        },
+        handleSubmit(data) {
+            this.fullscreenLoading = true;
+            console.log("111",data);
+
+            postArticleUpdate(data)
+                .then((req, res) => {
+                    this.$message({
+                        message: "修改成功",
+                        type: "success",
+                        duration: 2000
+                    });
+                    setTimeout(() => {
+                        this.fullscreenLoading = false;
+                        // window.location.reload();
+                    }, 3000);
+                })
+                .catch(() => {
+                    this.$message({
+                        message: "修改失败",
+                        type: "error",
+                        duration: 2000
+                    });
+                });
+        }
+    },
+    mounted() {
+        console.log(this, 333, this.title);
+    },
+    created() {
+        getArticle()
+            .then((req, res) => {
+                this.tableData = req.data.data;
+            })
+            .catch(err => {});
     }
-  },
-  mounted() {
-    getArticleTitle().then((req,res) => {
-      this.article = req.data.data;
-      // this.form = res.data.data
-      console.log(this.article,'rrr');
-      // res.send({code:0})
-    }).catch(err=>{
-      // res.send({code:1})
-    })
-    ;
-  }
 };
 </script>
-
-<style>
-</style>

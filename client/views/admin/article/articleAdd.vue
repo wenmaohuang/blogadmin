@@ -10,8 +10,9 @@
 
 <script>
   // import {postArticle} from "../../../api";
-import request from "../../../api";
-const postArticle = request.postArticle;
+// import request from "../../../api";
+import fyyd from "../../../api/fyyd"
+const postArticle = fyyd.postArticle;
 
 
 import Add from "../../../src/components/Add"

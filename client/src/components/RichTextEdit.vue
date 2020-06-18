@@ -1,6 +1,6 @@
 <template>
   <div class="edit">
-    <textarea id="edit" style="display: none;"></textarea>
+    <textarea id="edit" style="display: none;" :value="content"></textarea>
     <!-- <button type="button" @click="handleClick" class="layui-btn">提交</button> -->
   </div>
 </template>
@@ -22,7 +22,7 @@ export default {
       // console.log(this.layedit.getContent(this.index))
     }
   },
-
+props:['content'],
   mounted() {
     layui.use("layedit", () => {
       this.layedit = layui.layedit;
