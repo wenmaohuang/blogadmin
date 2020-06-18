@@ -36,7 +36,19 @@ router.post('/add', (req, res) => {
 })
 
 router.post('/delete',(req,res)=>{
-  console.log(req.body);
+  console.log(req.body,'bbb')
+  let title = req.body.title
+  articleDB.deleteOne({title:title})
+  .then(data=>{
+      res.send({
+          code:'hhh'
+      })
+  })
+  .catch(err=>{
+      res.send({
+          code:'err'
+      })
+  })
   
 })
 

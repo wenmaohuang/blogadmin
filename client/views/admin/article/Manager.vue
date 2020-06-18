@@ -25,7 +25,7 @@ export default {
     methods: {
         handleSubmit(data) {
             this.fullscreenLoading = true;
-            console.log("111");
+            console.log(data,"111");
 
             postArticleDel(data)
                 .then((req, res) => {
