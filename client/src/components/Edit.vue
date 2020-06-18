@@ -124,6 +124,6 @@ export default {
 </script>
 <style lang="less">
 .el-dialog {
-    background-color: #123;
+    background-color: #159;
 }
 </style>
