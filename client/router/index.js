@@ -34,6 +34,11 @@ const routes = [
                 name: 'Manager',
                 component: () => import('../views/admin/article/Manager')
             },
+            {
+                path: '/dailyAdd',
+                name: 'Add',
+                component: () => import('../views/admin/daily/Add')
+            },
         ]
     },
     {

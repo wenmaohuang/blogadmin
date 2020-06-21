@@ -34,7 +34,7 @@
                 <i class="iconfont icon-rizhi"></i>
                 <span>日志管理</span>
               </template>
-              <el-menu-item index="3-1">发表日记</el-menu-item>
+              <el-menu-item index="/dailyAdd">发表日记</el-menu-item>
               <el-menu-item index="3-1">删除日记</el-menu-item>
             </el-submenu>
             <el-submenu index="4">
