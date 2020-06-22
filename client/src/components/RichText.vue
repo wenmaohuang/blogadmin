@@ -1,6 +1,6 @@
 <template>
-  <div class="edit">
-    <textarea id="edit" style="display: none;"></textarea>
+  <div class="edit" :style="{width:'70%',margin:'0 20px'}">
+    <textarea id="edit" ></textarea>
     <!-- <button type="button" @click="handleClick" class="layui-btn">提交</button> -->
   </div>
 </template>

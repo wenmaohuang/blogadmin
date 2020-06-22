@@ -1,13 +1,13 @@
 <template>
     <el-form ref="form" :model="form" label-width="80px">
-        <el-form-item label="分类">
+        <el-form-item label="分类" :style="{marginTop:'30px'}">
             <el-select v-model="form.type" placeholder="请选择分类">
                 <el-option label="原创" value="原创"></el-option>
                 <el-option label="转载" value="转载"></el-option>
             </el-select>
         </el-form-item>
         <el-form-item label="标题">
-            <el-input v-model="form.title"></el-input>
+            <el-input v-model="form.title" :style="{maxWidth:'225px'}"></el-input>
         </el-form-item>
         <el-form-item label="标签">
             <el-select v-model="form.tag" placeholder="请选择标签">
@@ -19,21 +19,19 @@
             </el-select>
         </el-form-item>
         <RichText :value="form.context" ref="richText"></RichText>
-        <el-form-item label="封面"></el-form-item>
-        <Upload @uploadSuccess="uploadSuccess"></Upload>
-        <el-form-item label="内容"></el-form-item>
+        <el-form-item label="添加封面">
+            <Upload @uploadSuccess="uploadSuccess"></Upload>
+        </el-form-item>
+        <!-- <el-form-item label></el-form-item> -->
         <el-form-item>
-            <el-button type="primary" @click="onSubmit('form')">提交666</el-button>
-            <!-- <el-button type="primary" @click="onSubmit('form')">提交666</el-button> -->
-        </el-form-item>1
+            <el-button type="primary" @click="onSubmit('form')">提交</el-button>
+        </el-form-item>
     </el-form>
 </template>
 
 <script>
 import Upload from "./Upload.vue";
 import RichText from "./RichText.vue";
-// import { postArticle } from "../../api/";
-// console.log(postArticle);
 
 export default {
     name: "Add",
@@ -44,12 +42,16 @@ export default {
                 type: "",
                 title: "",
                 tag: "",
-                surface: ""
+                surface: "",
+                year: "",
+                month: "",
+                day: ""
             },
             rules: {
                 type: [{ required: true, message: "请选择type" }],
                 title: [{ required: true, message: "请输入title" }],
                 tag: [{ required: true, message: "请输入tag" }],
+                // time:[{required:true}],
                 content: {
                     validator: (rule, value, cb) => {
                         (function() {
@@ -79,17 +81,21 @@ export default {
         },
         onSubmit(formName) {
             console.log(formName, "fff");
+            this.form.year = new Date().getFullYear();
 
-            // console.log(666);
-            // console.log(666,this.refs[formName])
-            // console.log(this.$refs[formName]);
+            this.form.month = new Date().getMonth() + 1;
+
+            this.form.day = new Date().getDate();
+
             this.$refs[formName].validate(valid => {
-                // console.log(valid)
                 if (valid) {
                     this.$emit("handleSubmit", {
                         type: this.form.type,
                         title: this.form.title,
                         tag: this.form.tag,
+                        year: this.form.year,
+                        month: this.form.month,
+                        day: this.form.day,
                         surface: this.form.surface,
                         content: function() {
                             return this.layedit.getContent(this.index);
@@ -102,9 +108,9 @@ export default {
         }
     },
 
-      mounted(){
-         console.log(this,111)
-      }
+    mounted() {
+        console.log(this, 111);
+    }
 };
 </script>
 

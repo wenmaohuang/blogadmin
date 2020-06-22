@@ -9,14 +9,10 @@
 </template>
 
 <script>
-  // import {postArticle} from "../../../api";
-// import request from "../../../api";
 import fyyd from "../../../api/fyyd"
 const postArticle = fyyd.postArticle;
-
-
 import Add from "../../../src/components/Add"
-// import { log } from 'util';
+
 
   export default {
     name: "ArticleAdd",
@@ -31,7 +27,7 @@ import Add from "../../../src/components/Add"
         this.fullscreenLoading = true;
         
         postArticle(data).then((req,res)=>{
-          console.log(req,'lll',res,'kkkk');
+          // console.log(req,'lll',res,'kkkk');
           
           this.$message({
             message: "上传成功"+JSON.stringify(req),
@@ -49,22 +45,9 @@ import Add from "../../../src/components/Add"
             duration : 2000
           });
         })
-        console.log(data.req,555);
+        // console.log(data.req,555);
       }
     },
-
-    // beforeRouteLeave(to,from,next){
-    //   this.$confirm('此操作将不会保存已编写的文章内容, 是否继续?', '提示', {
-    //     confirmButtonText: '确定',
-    //     cancelButtonText: '取消',
-    //     type: 'warning',
-    //     center: true
-    //   }).then(() => {
-    //     next();
-    //   }).catch(() => {
-
-    //   });
-    // }
   }
 
 </script>
