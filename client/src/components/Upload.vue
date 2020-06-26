@@ -1,7 +1,7 @@
 <template>
   <el-upload
   class="avatar-uploader"
-  action="http://localhost:3002/upload/articleSurface"
+  action="http://www.fyyd.vip/upload/articleSurface"
   :show-file-list="false"
   :on-success="handleAvatarSuccess"
   :before-upload="beforeAvatarUpload"

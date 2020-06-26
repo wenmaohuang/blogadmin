@@ -1,14 +1,19 @@
 <template>
-  <h1>admin管理系统</h1>
+    <div class="admin">
+        <h1>欢迎进入管理系统</h1>
+    </div>
 </template>
 
 <script>
 export default {
-  name:'adminIndex'
-
-}
+    name: "adminIndex"
+};
 </script>
 
-<style>
-
+<style lang='less'>
+.admin{
+  h1 {
+    margin: 30px 40%;
+}
+}
 </style>

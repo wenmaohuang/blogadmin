@@ -12,7 +12,7 @@ let articleSchema = new Schema({
   day:{type:String,required:true},
   updateDate : {type: Date,default: Date.now},
   date : {type: Date, default: Date.now},
-  surface : {type:String,default: 'http://localhost:3000/img/defaultSurface.jpg'},
+  surface : {type:String,default: 'http://www.fyyd.vip/img/2.jpg'},
   pv : {type: Number,default: 0},
   comment : [{type:Schema.Types.ObjectID,ref:"comment"}]
 })
