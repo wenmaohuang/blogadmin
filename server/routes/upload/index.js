@@ -38,7 +38,7 @@ router.post("/articleSurface", (req, res)=> {
         res.send({
             code:0,
             msg:'',
-            surface:'http://localhost:3002/img/upload/article/'+req.file.filename
+            surface:'http://www.fyyd.vip:3002/img/upload/article/'+req.file.filename
         })
         console.log('c')
     }
