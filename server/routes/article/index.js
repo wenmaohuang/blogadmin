@@ -76,8 +76,8 @@ router.post('/getShowTitle', (req, res) => {
 router.post('/edit',(req,res)=>{
 
   let { type, title, tag, content, surface } = req.body;
-  console.log(type, ',,,,,,');
-  console.log(req.body,'mmm');
+  // console.log(type, ',,,,,,');
+  // console.log(req.body,'mmm');
 
   //后端数据验证
   if (!type || !title || !tag || !content) {
