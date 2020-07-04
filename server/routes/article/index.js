@@ -6,12 +6,12 @@ const articleDB = require("../../db/article");
 
 router.post('/add', (req, res) => {
 
-  let { type, title, tag,year,month,day, content, surface,comment } = req.body;
+  let { type, title, tag,year,month,day, content, surface, } = req.body;
   console.log(type, ',,,,,,');
   console.log(req.body,'mmm');
 
   //后端数据验证
-  if (!type || !title || !tag || !year || !month || !day || !content,comment) {
+  if (!type || !title || !tag || !year || !month || !day || !content) {
     res.send({
       code: 1,
       msg: "数据不完整",
@@ -21,7 +21,7 @@ router.post('/add', (req, res) => {
 
   /*数据库存储*/
   articleDB.create(
-    surface ? { type, title, tag,year,month,day, content, surface, comment} : { type, title, tag,year,month,day, content,comment }
+    surface ? { type, title, tag,year,month,day, content, surface} : { type, title, tag,year,month,day, content }
   ).then(d => {
     res.send({
       code: 0,
