@@ -20,8 +20,8 @@ postArticleDel({ title }) {
 postArticleUpdate({type,title,tag,content}){
     return axios.post('/article/edit',{type,title,tag,content})
 },
-postArticle({ type, title, content, tag,year,month,day, surface }) {
-    return axios.post('/article/add', { type, title, content, tag,year,month,day, surface })
+postArticle({ type, title, content, tag,year,month,day, surface,comment }) {
+    return axios.post('/article/add', { type, title, content, tag,year,month,day, surface,comment })
 },
 postDaily({content,time}){
     return axios.post('/daily/add',{content,time})

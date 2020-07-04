@@ -14,7 +14,11 @@ let articleSchema = new Schema({
   date : {type: Date, default: Date.now},
   surface : {type:String,default: 'http://www.fyyd.vip/img/4.jpg'},
   pv : {type: Number,default: 0},
-  comment : [{type:Schema.Types.ObjectID,ref:"comment"}]
+  // comment : [{type:Schema.Types.ObjectID,ref:"comment"}]
+  comment:[
+        {type:Schema.Types.ObjectID,ref:'articleMessage'}
+        // {type:Schema.Types.ObjectID,ref:'users'}
+    ]
 })
 
 articleSchema.pre("update",function(next){

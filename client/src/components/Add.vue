@@ -15,6 +15,8 @@
                 <el-option label="JavaScript" value="JavaScript"></el-option>
                 <el-option label="Node" value="Node"></el-option>
                 <el-option label="Vue&React" value="Vue&React"></el-option>
+                <el-option label="Mongoose" value="Mongoose"></el-option>
+                <el-option label="Express" value="Express"></el-option>
                 <el-option label="other" value="other"></el-option>
             </el-select>
         </el-form-item>
@@ -45,7 +47,8 @@ export default {
                 surface: "",
                 year: "",
                 month: "",
-                day: ""
+                day: "",
+                comment:""
             },
             rules: {
                 type: [{ required: true, message: "请选择type" }],
@@ -97,6 +100,7 @@ export default {
                         month: this.form.month,
                         day: this.form.day,
                         surface: this.form.surface,
+                        comment:this.form.comment,
                         content: function() {
                             return this.layedit.getContent(this.index);
                         }.call(this.$refs.richText)
