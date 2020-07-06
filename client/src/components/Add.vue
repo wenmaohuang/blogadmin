@@ -17,7 +17,7 @@
                 <el-option label="Vue&React" value="Vue&React"></el-option>
                 <el-option label="Mongoose" value="Mongoose"></el-option>
                 <el-option label="Express" value="Express"></el-option>
-                <el-option label="other" value="other"></el-option>
+                <el-option label="other" value="Other"></el-option>
             </el-select>
         </el-form-item>
         <RichText :value="form.context" ref="richText"></RichText>
