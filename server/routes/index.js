@@ -10,4 +10,5 @@ var router = express.Router();
 router.use('/upload',require('./upload/index.js'))
 router.use('/article',require('./article/index.js'))
 router.use('/daily',require('./daily/index.js'))
+router.use('/search',require('./search/index.js'))
 module.exports = router;
