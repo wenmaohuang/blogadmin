@@ -35,6 +35,8 @@ app.use((req, res, next) => {
         'Access-Control-Allow-Origin': req.headers.origin || '*',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'PUT,POST,GET,DELETE,OPTIONS',
+
+        "Content-Security-Policy": "upgrade-insecure-requests"
         // 'Content-Type': 'application/json; charset=utf-8'
     });
     if (req.method === "OPTIONS") {
