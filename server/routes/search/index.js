@@ -42,6 +42,9 @@ router.get("/",(req,res)=>{
         res.send([]);
     }
 });
+router.get('/focus',(req,res)=>{
+    
+})
 
 // module.exports = router
 module.exports = router
