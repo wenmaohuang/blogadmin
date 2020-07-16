@@ -13,15 +13,17 @@ router.get("/",(req,res)=>{
     console.log('aaaa');
     // console.log(req,'iii');
     let {word} = req.query;
+    console.log(word,'a1');
     if (word){
         request.get(
-            'https://www.baidu.com/sugrec?prod=pc&wd='+word+'&cb=lyj'
+            'https://www.baidu.com/sugrec?prod=pc&wd='+ encodeURI(word)+'&cb=lyj'
             ,(err,a,body)=>{
+                console.log(err,'c1');
                 if (err){
                     res.send([]);
                     return;
                 }
-
+                console.log(body,'b1');
                 let str = body.match(/^[\da-z_]+\((.+)\)$/i)[1];
                 str = JSON.parse(str);
                 if (str.g){
