@@ -1,6 +1,6 @@
 import axios from 'axios'
-axios.defaults.baseURL = 'http://localhost:3002'
-// axios.defaults.baseURL = 'http://www.fyyd.vip:3002'
+// axios.defaults.baseURL = 'http://localhost:3002'
+axios.defaults.baseURL = 'http://www.fyyd.vip:3002'
 // axios.defaults.baseURL = 'https://test.fyyd.vip:3102'
 
 axios.defaults.withCredentials = true
