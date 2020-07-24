@@ -1,8 +1,28 @@
 const mongoose = require("./connect")
 const articleInfoDB = require('./articleInfo')
 
-let Schema = mongoose.Schema;
-let articleSchema = new Schema({
+// let Schema = mongoose.Schema;
+// let articleSchema = new Schema({
+//   type : {type: String,required: true},
+//   title : {type: String,required: true},
+//   content : {type:String,required: true},
+//   tag : {type: String,required: true},
+//   year:{type:String,required:true},
+//   month:{type:String,required:true},
+//   day:{type:String,required:true},
+//   updateDate : {type: Date,default: Date.now},
+//   date : {type: Date, default: Date.now},
+//   surface : {type:String,default: 'http://www.fyyd.vip/img/4.jpg'},
+//   pv : {type: Number,default: 0},
+//   comment:[
+//         {type:Schema.Types.ObjectID,ref:'articleMessage'}
+//     ]
+// })
+
+
+let Schema = mongoose.Schema
+
+let articleSchema = new mongoose.Schema({
   type : {type: String,required: true},
   title : {type: String,required: true},
   content : {type:String,required: true},
@@ -14,12 +34,15 @@ let articleSchema = new Schema({
   date : {type: Date, default: Date.now},
   surface : {type:String,default: 'http://www.fyyd.vip/img/4.jpg'},
   pv : {type: Number,default: 0},
-  // comment : [{type:Schema.Types.ObjectID,ref:"comment"}]
   comment:[
         {type:Schema.Types.ObjectID,ref:'articleMessage'}
-        // {type:Schema.Types.ObjectID,ref:'users'}
     ]
 })
+
+articleSchema.add({readcount:{type:Number,require:true}})
+
+
+
 
 articleSchema.pre("update",function(next){
   this.update = new Date;
@@ -58,6 +81,9 @@ articleSchema.pre("remove",{ query: true, document: false },function(){
       }
     })
 });
+
+
+
 
 let article = mongoose.model("article",articleSchema);
 

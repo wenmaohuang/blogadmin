@@ -44,11 +44,13 @@ export default {
                 type: "",
                 title: "",
                 tag: "",
+                content:"",
                 surface: "",
                 year: "",
                 month: "",
                 day: "",
-                comment:""
+                comment:"",
+                readcount:0
             },
             rules: {
                 type: [{ required: true, message: "请选择type" }],
@@ -99,6 +101,7 @@ export default {
                         year: this.form.year,
                         month: this.form.month,
                         day: this.form.day,
+                        readcount:this.form.readcount,
                         surface: this.form.surface,
                         comment:this.form.comment,
                         content: function() {

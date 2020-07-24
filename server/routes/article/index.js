@@ -6,7 +6,7 @@ const articleDB = require("../../db/article");
 
 router.post('/add', (req, res) => {
 
-  let { type, title, tag,year,month,day, content, surface, } = req.body;
+  let { type, title, tag,year,month,day, content, surface, readcount} = req.body;
   console.log(type, ',,,,,,');
   console.log(req.body,'mmm');
 
@@ -21,7 +21,7 @@ router.post('/add', (req, res) => {
 
   /*数据库存储*/
   articleDB.create(
-    surface ? { type, title, tag,year,month,day, content, surface} : { type, title, tag,year,month,day, content }
+    surface ? { type, title, tag,year,month,day, content, surface,readcount} : { type, title, tag,year,month,day, content ,readcount}
   ).then(d => {
     res.send({
       code: 0,
