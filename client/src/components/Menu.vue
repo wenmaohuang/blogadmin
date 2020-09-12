@@ -43,7 +43,7 @@
                 <span>留言管理</span>
               </template>
               <el-menu-item index="4-1">发表留言</el-menu-item>
-              <el-menu-item index="4-1">删除删除</el-menu-item>
+              <el-menu-item index="deleteMessage">删除留言</el-menu-item>
             </el-submenu>
           </el-menu>
         </el-col>

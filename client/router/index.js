@@ -59,6 +59,16 @@ const routes = [{
 
                 component: () => import('../views/admin/daily/Add')
             },
+            {
+                path: '/deleteMessage',
+                name: 'delete',
+                meta: {
+                    // cnName: '管理'
+                    title:'删除留言'
+                },
+
+                component: () => import('../views/admin/message/Delete')
+            },
         ]
     },
     {
