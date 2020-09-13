@@ -19,6 +19,9 @@ export default {
     postArticleDel({title}) {
         return axios.post('/article/delete', {title})
     },
+    postMessageDel({id}) {
+        return axios.post('/message/delete', {id})
+    },
     postArticleUpdate({type, title, tag, content}) {
         return axios.post('/article/edit', {
             type,

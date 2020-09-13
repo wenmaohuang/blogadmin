@@ -83,26 +83,50 @@ const router = express.Router();
 // });
 
 /*获取留言*/
-router.post("/getList",(req,res)=>{
-    let {skip,limit} = req.body;
+router.post("/getList", (req, res) => {
+    let {skip, limit} = req.body;
 
     /*拿取数据*/
-    messageDB.find({},{},{skip,limit,sort:{date:-1}})
-        .populate("user")
-        .populate("children.user")
-        .then(data=>{
+    messageDB.find({}, {}, {
+        skip,
+        limit,
+        sort: {date: -1}
+    })
+        // .populate("user")
+        // .populate("children.user")
+        .then(data => {
             res.send({
-                code : 0,
-                msg : "请求成功",
+                code: 0,
+                msg: "请求成功",
                 data
             });
         })
-        .catch(()=>{
+        .catch(() => {
             res.send({
-                code : 4,
-                msg : "服务器错误",
-                data : []
+                code: 4,
+                msg: "服务器错误",
+                data: []
             });
+        })
+});
+
+
+router.post("/delete", (req, res) => {
+    let {id} = req.body;
+    console.log(id,'nb');
+
+
+    /*拿取数据*/
+    messageDB.deleteOne({_id: id})
+        .then(data => {
+            res.send({
+                code: 'hhh'
+            })
+        })
+        .catch(err => {
+            res.send({
+                code: 'err'
+            })
         })
 });
 
